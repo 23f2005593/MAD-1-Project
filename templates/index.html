@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Entry Book</title>
+</head>
+<body>
+    <h1>The Entry Book</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.name.label }} {{ form.name() }}
+        {{ form.submit() }}
+    </form>
+
+    <h2>Entry</h2>
+    <ul>
+        {% for entry in entries %}
+            <li>{{ entry.name }} - {{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
