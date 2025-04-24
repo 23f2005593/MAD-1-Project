@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>The Entry Book</title>
+    <title>Watchman Entry Book App w/h CRUD</title>
 </head>
 <body>
-    <h1>The Entry Book</h1>
+    <h1>Entry Book</h1>
+
+    <!-- Form to Add a New Entry -->
     <form method="POST">
         {{ form.hidden_tag() }}
-        {{ form.name.label }} {{ form.name() }}
+        <label for="name">{{ form.name.label }}</label>
+        {{ form.name() }}
         {{ form.submit() }}
     </form>
 
-    <h2>Entry</h2>
+    <!-- Search Form -->
+    <h2>Search Entry</h2>
+    <form method="GET" action="/search">
+        <label for="entry_id">Entry ID:</label>
+        <input type="text" id="entry_id" name="id">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Search Results Fields -->
+    {% if search_result %}
+        <h3>Search Result:</h3>
+        <p>ID: {{ search_result.id }} - {{ search_result.name }} - {{ search_result.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+    {% elif search_error %}
+        <p style="color: red;">{{ search_error }}</p> <!-- Error message in red if no entry found -->
+    {% endif %}
+
+    <!-- List of Entries -->
+    <h2>Entries</h2>
     <ul>
         {% for entry in entries %}
-            <li>{{ entry.name }} - {{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</li>
+            <li>
+                ID: {{ entry.id }} - {{ entry.name }} - {{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                
+                <!-- Update -->
+                <form method="POST" action="/update/{{ entry.id }}" style="display:inline;">
+                    {{ form.hidden_tag() }}
+                    <input type="text" name="name" placeholder="New Name">
+                    <button type="submit">Update</button>
+                </form>
+
+                <!-- Delete -->
+                <form method="POST" action="/delete/{{ entry.id }}" style="display:inline;">
+                    {{ form.hidden_tag() }}
+                    <button type="submit">Delete</button>
+                </form>
+
+            </li>
         {% endfor %}
     </ul>
 </body>
 </html>
+
