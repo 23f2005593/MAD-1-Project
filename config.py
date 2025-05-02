@@ -1,8 +1,8 @@
 import os
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Config:
-    SECRET_KEY = 'super-secret-watchman-key'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'entry.db')
+    SECRET_KEY = "your_secret_key_here"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR, "app.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False

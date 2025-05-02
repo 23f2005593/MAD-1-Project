@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div style="text-align: center;">
+        <h1>Login Yourself</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+
+
+                {{form.email.label}}<br>
+                {{ form.email() }}<br>
+
+                {{ form.password.label }}<br>
+                {{ form.password() }}<br>
+
+
+                {{ form.submit.label }}<br>
+                {{ form.submit() }}
+            </div>
+        </form>
+        
+
+    </div>
+</body>
+</html>

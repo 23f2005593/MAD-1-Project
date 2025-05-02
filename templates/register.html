@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div style="text-align: center;">
+        <h1>Register Yourself</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.username.label }}<br>
+                {{ form.username() }}<br>
+
+                {{form.email.label}}<br>
+                {{ form.email() }}<br>
+
+                {{ form.password.label }}<br>
+                {{ form.password() }}<br>
+
+                {{form.confirm_password.label}}<br>
+                {{ form.confirm_password() }}<br>
+
+                {{ form.submit.label }}<br>
+                {{ form.submit() }}
+            </div>
+        </form>
+        
+
+    </div>
+</body>
+</html>
