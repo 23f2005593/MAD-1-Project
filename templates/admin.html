@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN DASHBOARD</title>
+</head>
+<body>
+    <div>
+        <h1>Welcome to the Admin Dashboard</h1>
+        <p>Here you can manage your application.</p>
+        {% for user in users %}
+            <div>
+                <h2>{{ user.username }}</h2>
+                <p>Email: {{ user.email }}</p>
+
+            </div>
+        {% endfor %}
+        
+
+        <div>
+            <button><a href="/logout">LOGOUT</a></button>
+        </div>
+    </div>
+</body>
+</html>

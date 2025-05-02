@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from database import db, migrate
 from config import Config
 from models import User
-from flask_login import LoginManager, login_required, login_user, logout_user
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
@@ -55,6 +55,11 @@ def register():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    if current_user.is_admin:
+        users = User.query.all()
+        print(users)
+        return render_template('admin.html', users=users)
+       
     return render_template('dashboard.html')
 
 @app.route('/logout')
